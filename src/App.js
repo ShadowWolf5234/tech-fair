@@ -2,13 +2,21 @@ import React, {Component} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+//https://www.ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location
+
 class App extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {text: localStorage.getItem('text')};
     }
 
     onSave() {
-        console.log('asdf');
+        localStorage.setItem('text', this.state.text);
+    }
+
+    handleChange(newText) {
+        this.setState({text: newText});
     }
 
     render() {
@@ -21,10 +29,10 @@ class App extends Component {
 
                 <section>
                     <section>
-                        prompt nmhvnhg adsf adsf dffdsmfsdamfsdmsdfamsdfamsdfmsadfmsdfamsdfamsadfmmnfdsa sdfa as fd sadf
+                        prompt nmhvnhg ads
                     </section>
                     <section>
-                        <MyEditor/>
+                        <MyEditor text={this.state.text} handleChange={(text) => this.handleChange(text)}/>
                     </section>
                     <section>
                         <button onClick={() => this.onSave()}>Save</button>
@@ -36,27 +44,13 @@ class App extends Component {
 }
 
 class MyEditor extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {text: ""};
-    }
-
     render() {
         return (
             <ReactQuill
-                value={this.state.text}
-                onChange={this.handleChange}/>
-        );
+                value={this.props.text}
+                onChange={(text) => this.props.handleChange(text)}/>
+        );  
     }
 }
-
-const styles = {
-    editor: {
-        border: '1px solid gray',
-        minHeight: '6em'
-    }
-};
-
 
 export default App;

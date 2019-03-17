@@ -8,7 +8,20 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {text: localStorage.getItem('text')};
+        this.state = {
+        text: localStorage.getItem('text'),
+         prompt: ""
+         };
+    }
+
+    componentDidMount() {
+        fetch('https://www.ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
+        .then((response) => {
+            return  response.json();
+        }).then((prompt) => {
+           this.setState({text: this.state.text, prompt: prompt.english});
+        });
+
     }
 
     onSave() {
@@ -16,20 +29,20 @@ class App extends Component {
     }
 
     handleChange(newText) {
-        this.setState({text: newText});
+        this.setState({text: newText, prompt: this.state.prompt});
     }
 
     render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    My name is Dean and this is a witing prompts website. You might get some crazy and some lame or some
+                    My name is Dean and this is a writing prompts website. You might get some crazy and some lame or some
                     mild.
                 </header>
 
                 <section>
                     <section>
-                        prompt nmhvnhg ads
+                        {this.state.prompt}
                     </section>
                     <section>
                         <MyEditor text={this.state.text} handleChange={(text) => this.handleChange(text)}/>

@@ -14,3 +14,7 @@ You will also see any lint errors in the console.
 * git push
 
 https://shadowwolf5234.github.io/tech-fair/index.html
+
+### save work to updated website
+
+npm run build

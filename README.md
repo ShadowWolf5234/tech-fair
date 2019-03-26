@@ -12,3 +12,5 @@ You will also see any lint errors in the console.
 * git add .
 * git commit -m"what i just did"
 * git push
+
+https://shadowwolf5234.github.io/tech-fair/index.html

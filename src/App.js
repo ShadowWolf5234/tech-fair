@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
 
 class App extends Component {
   constructor(props) {
@@ -34,22 +36,23 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col >
-            My name is Dean and this is a writing prompts website.
-            You might get some crazy and some lame or some mild.
-          </Col>
-        </Row>
+      <>
+  <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="#home">
+      {'Deans writing prompts'}
+    </Navbar.Brand>
 
-        <Row>
+  </Navbar>
+      <Container>
+
+        <Row className="b">
           <Col>
             {this.state.prompt}
           </Col>
         </Row>
 
         <Row>
-          <Col >
+          <Col>
             <MyEditor
               width="100%"
               text={this.state.text}
@@ -63,6 +66,7 @@ class App extends Component {
           </Col>
         </Row>
       </Container>
+      </>
     );
   }
 }
